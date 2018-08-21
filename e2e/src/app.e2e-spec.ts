@@ -1,4 +1,5 @@
 import { AppPage } from './app.po';
+import { browser, by, element } from 'protractor';
 
 describe('workspace-project App', () => {
   let page: AppPage;
@@ -9,6 +10,13 @@ describe('workspace-project App', () => {
 
   it('should display welcome message', () => {
     page.navigateTo();
+   // browser.pause();
     expect(page.getParagraphText()).toEqual('Welcome to ClientGestionStockProduits!');
   });
+
+  it('should display about button',()=>{
+    page.navigateTo();
+  });
+
+
 });
