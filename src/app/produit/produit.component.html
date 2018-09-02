@@ -1,17 +1,85 @@
-<p>
-  produit works!
-</p>
-<ul>
-  <li *ngFor="let produit of produits">{{produit.ref}}-{{produit.quantite}}-{{produit.prixUnitaire}}</li>
-</ul>
-<div>
-  <!--<button type="button" class="btn btn-primary">Primary</button>
+<h4>Produits</h4>
+<div class="container">
+  <div class="row">
+    <hr>
+      <div class="col-lg-7">
+          <table class="table table-hover">
+              <thead>
+                <th>Référence</th>
+                <th>Quantité</th>
+                <th>Prix Unitaire</th>
+                <th><button class="btn btn-outline-primary" (click)="operation = 'add';initProduit();">Add</button></th>
+              </thead>
+              <tbody>
+                <tr *ngFor="let produit of produits">
+                    <td>{{produit.ref}}</td>
+                    <td>{{produit.quantite}}</td>
+                    <td>{{produit.prixUnitaire}}</td>
+                    <td>
+                      <button class="btn btn-outline-primary" (click)="operation = 'edit'; selectedProduit = produit;">Edit</button>&nbsp;
+                      <button class="btn btn-outline-danger" (click)="operation = 'remove';selectedProduit = produit;">Remove</button>
+                    </td>
+                </tr>
+                </tbody>
+          </table>
+      </div>
+      <div class="col-lg-5">
+          <div class="card">
+              <div class="card-header bg-info text-white">
+                {{operation == 'add'  ? 'Ajouter Produit' : 
+                operation == 'edit'   ?  'Modifier Produit' :
+                operation == 'remove' ?  'Supprimer Produit' : '' }}
+                
+              </div>
+              <div class="card-body">
+                <div *ngIf="operation == 'add' || operation == 'edit' ">
+                  <form [formGroup]="produitForm">
+                      <div class="form-group">
+                        <label>Référence</label>
+                        <input type="text" class="form-control" formControlName="ref" [(ngModel)]="selectedProduit.ref">
+                      </div>
+                      <div class="alert alert-danger" 
+                           *ngIf="produitForm.controls['ref'].invalid &&
+                            (produitForm.controls['ref'].touched || produitForm.controls['ref'].dirty)">
+                          Référence est obligatoire !
+                      </div>
+                      <div class="form-group">
+                          <label>Quantité</label>
+                          <input type="number"  class="form-control" formControlName="quantite" [(ngModel)]="selectedProduit.quantite">
+                      </div>
+                      <div class="form-group">
+                            <label>Prix Unitaire</label>
+                            <input type="number"  class="form-control" formControlName="prixUnitaire" [(ngModel)]="selectedProduit.prixUnitaire">
+                      </div>
+                      <button type="button" [disabled]="produitForm.invalid" class="btn btn-primary"
+                      (click)="operation == 'add'  ? addProduit() : updateProduit() ">
+                      {{operation == 'add'  ? 'Ajouter' : 
+                      operation == 'edit'   ?  'Modifier' : '' }}
+                      </button>
+                    </form>
+                  </div>
+                  <div *ngIf="operation == 'remove'">
+                      <p class="card-title">
+                        Référéence : {{selectedProduit.ref}}
+                      </p>
+                      <p>
+                        Voulez vous vraimenet supprimer ce produit ?
+                      </p>
+                      <button class="btn btn-success" (click)="deleteProduit()">Confirmer</button>
+                  </div>
+              </div>
+              <div class="card-footer"></div>
+            </div>
+      </div>
+  </div>
+</div>
+ <!--<div>
+ <button type="button" class="btn btn-primary">Primary</button>
   <button type="button" class="btn btn-secondary">Secondary</button>
   <button type="button" class="btn btn-success">Success</button>
   <button type="button" class="btn btn-danger">Danger</button>
   <button type="button" class="btn btn-warning">Warning</button>
   <button type="button" class="btn btn-info">Info</button>
   <button type="button" class="btn btn-light">Light</button>
-  <button type="button" class="btn btn-dark">Dark</button>-->
-
-</div>
+  <button type="button" class="btn btn-dark">Dark</button>
+</div>-->
