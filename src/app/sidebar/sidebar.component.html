@@ -1,22 +1,16 @@
 <nav class="hidden-xs-down bg-faded sidebar">
   <ul class="nav nav-pills flex-column">
       <li class="nav-item">
-          <a class="nav-link"  routerLink="/dashboard" routerLinkActive="active">Dashboard</a>
+          <a class="nav-link"  [routerLink]="[{outlets:{contentOutlet:'dashboard'}}]" routerLinkActive="active">Dashboard</a>
       </li>
       <li class="nav-item">
-          <a class="nav-link" routerLink="/produits" routerLinkActive="active">Produits</a>
+          <a class="nav-link" [routerLink]="[{outlets:{contentOutlet:'produits'}}]" routerLinkActive="active">Produits</a>
       </li>
       <li class="nav-item">
           <a class="nav-link" href="#">Link</a>
       </li>
   </ul>
   <ul class="nav nav-pills flex-column">
-      <li class="nav-item">
-          <a class="nav-link" href="#">Link</a>
-      </li>
-      <li class="nav-item">
-          <a class="nav-link" href="#">Link</a>
-      </li>
       <li class="nav-item">
           <a class="nav-link" href="#">Link</a>
       </li>
